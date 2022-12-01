@@ -25,7 +25,7 @@ const endpointCadastro =
             return res.status(400).json({erro : 'Senha informada inválida'});
         }
 
-        // validacao se ja existe usuario com o memso email
+        // validacao se ja existe usuario com o mesmo email
         const usuariosComMesmoEmail = await UsuarioModel.find({email : usuario.email});
         if(usuariosComMesmoEmail && usuariosComMesmoEmail.length > 0){
             return res.status(400).json({erro : 'Email informado já cadastrado'});
