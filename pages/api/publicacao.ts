@@ -35,7 +35,7 @@ const handler = nc()
                 idUsuario : usuario._id,
                 descricao,
                 foto : image.media.url,
-                data : new Date,
+                data : new Date()
             }
 
             await PublicacaoModel.create(publicacao);
