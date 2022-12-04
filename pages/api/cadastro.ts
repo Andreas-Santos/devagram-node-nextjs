@@ -2,8 +2,8 @@ import type {NextApiRequest, NextApiResponse} from 'next';
 import type {RespostaPadraoMsg} from '../../types/RespostaPadraoMsg';
 import type {CadastroRequisicao} from '../../types/CadastroRequisicao';
 import {UsuarioModel} from '../../models/UsuarioModel';
-import md5 from 'md5';
 import {conectarMongoDB} from '../../middlewares/conectarMongoDB';
+import md5 from 'md5';
 import {upload, uploadImagemCosmic} from '../../services/uploadImagemCosmic';
 import nc from 'next-connect';
 
@@ -14,28 +14,28 @@ const handler = nc()
             const usuario = req.body as CadastroRequisicao;
         
             if(!usuario.nome || usuario.nome.length < 2){
-                return res.status(400).json({erro : 'Nome inválido'});
+                return res.status(400).json({erro : 'Nome invalido'});
             }
-            
+    
             if(!usuario.email || usuario.email.length < 5
                 || !usuario.email.includes('@')
                 || !usuario.email.includes('.')){
-                return res.status(400).json({erro : 'Email informado inválido'});
+                return res.status(400).json({erro : 'Email invalido'});
             }
-            
+    
             if(!usuario.senha || usuario.senha.length < 4){
-                return res.status(400).json({erro : 'Senha informada inválida'});
+                return res.status(400).json({erro : 'Senha invalida'});
             }
-            
+    
             // validacao se ja existe usuario com o mesmo email
             const usuariosComMesmoEmail = await UsuarioModel.find({email : usuario.email});
             if(usuariosComMesmoEmail && usuariosComMesmoEmail.length > 0){
-                return res.status(400).json({erro : 'Email informado já cadastrado'});
+                return res.status(400).json({erro : 'Ja existe uma conta com o email informado'});
             }
-            
-            //enviar a imagem do multer para o cosmic
-            const image = await uploadImagemCosmic(req);
 
+            // enviar a imagem do multer para o cosmic
+            const image = await uploadImagemCosmic(req);
+    
             // salvar no banco de dados
             const usuarioASerSalvo = {
                 nome : usuario.nome,
@@ -52,10 +52,9 @@ const handler = nc()
 });
 
 export const config = {
-    api : {
+    api: {
         bodyParser : false
     }
 }
-
 
 export default conectarMongoDB(handler);

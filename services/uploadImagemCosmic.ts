@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-import multer from "multer"
-=======
 import multer from "multer";
 import cosmicjs from "cosmicjs";
 
@@ -25,9 +22,9 @@ const storage = multer.memoryStorage();
 const upload = multer({storage : storage})
 
 const uploadImagemCosmic = async (req : any) => {
-    if(req?.file?.originalName){
+    if(req?.file?.originalname){
         const media_object ={
-            originalName : req.file.originalName,
+            originalname : req.file.originalname,
             buffer : req.file.buffer
         };
     
@@ -40,4 +37,3 @@ const uploadImagemCosmic = async (req : any) => {
 }
 
 export {upload, uploadImagemCosmic};
->>>>>>> parent of 2ebb783 (Endpoint de publicacao)
