@@ -57,4 +57,5 @@ export const config = {
     }
 }
 
+
 export default conectarMongoDB(handler);
