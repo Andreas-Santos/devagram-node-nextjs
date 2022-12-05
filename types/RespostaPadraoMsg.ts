@@ -1,4 +1,4 @@
 export type RespostaPadraoMsg = {
-    msg? : String,
-    erro? : String
+    msg? : string,
+    erro? : string
 }
