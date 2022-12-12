@@ -5,7 +5,6 @@ import NextCors from "nextjs-cors";
 export const politicaCORS = (handler : NextApiHandler) => 
     async (req : NextApiRequest, res : NextApiResponse<RespostaPadraoMsg>) => {
     try{
-
         await NextCors(req, res, {
             origin : '*',
             methods : ['GET', 'POST', 'PUT'],
