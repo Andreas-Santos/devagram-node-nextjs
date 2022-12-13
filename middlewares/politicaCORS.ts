@@ -6,9 +6,9 @@ export const politicaCORS = (handler : NextApiHandler) =>
     async (req : NextApiRequest, res : NextApiResponse<RespostaPadraoMsg>) => {
     try{
         await NextCors(req, res, {
-            origin : '*',
-            methods : ['GET', 'POST', 'PUT'],
-            optionsSuccessStatus : 200, //navegadores antigos dao problema ao retornar 204
+            origin: '*',
+            methods: ['GET', 'POST', 'PUT'],
+            optionsSuccessStatus: 200, //navegadores antigos dao problema ao retornar 204
         });
 
         return handler(req, res);
